@@ -377,6 +377,10 @@ public class SeleniumUtils {
     public String insertIndexIntoXpath(String xpath, int index){
         return xpath.replace("[]","["+ index +"]");
     }
+    public String insertTextIntoXpath(String xpath, String item){
+        return xpath.replace("'XXX'","'"+ item +"'");
+    }
+
 
     public boolean switchDriver(String target, String iFrame){
         if(target.toUpperCase().equals("IFRAME")){

@@ -4,12 +4,15 @@
 public class HomePage extends SeleniumUtils {
 
     public static final String SEARCH_BOX = ".//input[@id='headerSearch']";
+    public static final String SEARCH_BUTTON = ".//button[@id='headerSearchButton']";
 
-    public boolean validateSearchBox(){
 
-        if(waitUntilElementDisplayed(SEARCH_BOX)){
+    public boolean validateSearchBoxEnterText(String item) {
 
-            return true;
+        if (enterTextIntoTextBox(SEARCH_BOX, item)) {
+            if (clickButton(SEARCH_BUTTON)) {
+                return true;
+            }
         }
         return false;
     }
