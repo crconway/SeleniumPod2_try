@@ -1,5 +1,6 @@
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +18,7 @@ public class SeleniumUtils {
     public SeleniumUtils(){
         //Setting Chrome driver properties
         //String path = System.getProperty("user.dir")+"\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", "/Users/crc07/IdeaProjects/SeleniumPod2/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "/Users/crc07/IdeaProjects/SeleniumPod2_try/chromedriver");
         // Completing instantiation
         driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -43,7 +44,7 @@ public class SeleniumUtils {
 
             counter++;
             try {
-                TimeUnit.MILLISECONDS.sleep(950);
+                TimeUnit.MILLISECONDS.sleep(50);
             }catch(Exception e){
                 return false;
             }
@@ -70,7 +71,7 @@ public class SeleniumUtils {
 
             counter++;
             try {
-                TimeUnit.MILLISECONDS.sleep(950);
+                TimeUnit.MILLISECONDS.sleep(50);
             }catch(Exception e){
                 return false;
             }
@@ -97,7 +98,7 @@ public class SeleniumUtils {
 
             counter++;
             try {
-                TimeUnit.MILLISECONDS.sleep(950);
+                TimeUnit.MILLISECONDS.sleep(50);
             }catch(Exception e){
                 return false;
             }
@@ -278,9 +279,10 @@ public class SeleniumUtils {
 
         try {
             if (waitUntilElementDisplayed(element)) {
-                //driver.findElement(By.xpath(element)).clear();
+                driver.findElement(By.xpath(element)).clear();
                 try {
                     driver.findElement(By.xpath(element)).sendKeys(strText);
+                    driver.findElement(By.xpath(element)).sendKeys(Keys.RETURN);
                 }catch(Exception e){
                     System.out.println("Here is the exception.");
                 }
@@ -297,9 +299,10 @@ public class SeleniumUtils {
 
         try {
             if (waitUntilElementDisplayed(element)) {
-                //driver.findElement(By.xpath(element)).clear();
+                driver.findElement(element).clear();
                 try {
                     driver.findElement(element).sendKeys(strText);
+                    //driver.findElement(element).sendKeys(Keys.RETURN);
                 }catch(Exception e){
                     System.out.println("Here is the exception.");
                 }
@@ -316,9 +319,10 @@ public class SeleniumUtils {
 
         try {
             if (waitUntilElementDisplayed(element)) {
-                //driver.findElement(By.xpath(element)).clear();
+                element.clear();
                 try {
                     element.sendKeys(strText);
+                    element.sendKeys(Keys.RETURN);
                 }catch(Exception e){
                     System.out.println("Here is the exception.");
                 }
@@ -334,7 +338,7 @@ public class SeleniumUtils {
     public boolean clickButton(String element){
         if(waitUntilElementDisplayed(element)){
             try {
-                syncElement("MILLISECONDS",100); //Syncing
+                syncElement("MILLISECONDS",50); //Syncing
                 driver.findElement(By.xpath(element)).click(); // command for click
                 return true;
             }catch(Exception e){
@@ -378,7 +382,7 @@ public class SeleniumUtils {
         return xpath.replace("[]","["+ index +"]");
     }
     public String insertTextIntoXpath(String xpath, String item){
-        return xpath.replace("'XXX'","'"+ item +"'");
+        return xpath.replace("'TO_REPLACE'","'"+ item +"'");
     }
 
 

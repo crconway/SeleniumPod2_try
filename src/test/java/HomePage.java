@@ -10,6 +10,7 @@ public class HomePage extends SeleniumUtils {
     public boolean validateSearchBoxEnterText(String item) {
 
         if (enterTextIntoTextBox(SEARCH_BOX, item)) {
+            //click button not working left code to stay like class
             if (clickButton(SEARCH_BUTTON)) {
                 return true;
             }

@@ -1,9 +1,16 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
 /**
  * Created by crc07 on 6/29/17.
  */
 public class LandingPage extends HomePage {
 
-    public static final String LANDING_PAGE = ".//span[@class = 'original-keyword u__regular' and contains(text(), 'XXX')]";
+    public static final String LANDING_PAGE = ".//span[@class = 'original-keyword u__regular' and contains(text(), 'TO_REPLACE')]";
+    public static final String WRAPPER = ".//div[contains(@class,'plp-pod plp-pod--default pod-item--')]";
+    public static final String PRICE = ".//div[@class='price']";
+    public static final String DESCRIPTION = ".//div[@class='pod-plp__description js-podclick-analytics']//a";
+    public static final String ADD_TO_CART = ".//span[@class='bttn__content' and text() = 'Add To Cart']";
 
     public boolean verifyItemLandingPage(String item) {
 
@@ -12,6 +19,26 @@ public class LandingPage extends HomePage {
         }
          return false;
 
+    }
+
+    public boolean validateItemDescriptionFromPrice(int min, int max){
+        if(waitUntilElementDisplayed(WRAPPER)){
+            //List<WebElement> list = driver.findElements(By.xpath(WRAPPER));
+
+            for (WebElement element:getElements(WRAPPER)) {
+                String price = element.findElement(By.xpath(PRICE)).getText();
+                price = price.substring(1,price.length()-2);
+                int thePrice = Integer.parseInt(price);
+                if(thePrice >= min && thePrice < max){
+                    String desc = element.findElement(By.xpath(DESCRIPTION)).getText();
+                    System.out.println("Item description: "+ desc);
+                    System.out.println("Item price: $"+ price);
+                    element.findElement(By.xpath(ADD_TO_CART)).click();
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
