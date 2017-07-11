@@ -27,12 +27,12 @@ public class LandingPage extends HomePage {
 
             for (WebElement element:getElements(WRAPPER)) {
                 String price = element.findElement(By.xpath(PRICE)).getText();
-                price = price.substring(1,price.length()-2);
-                int thePrice = Integer.parseInt(price);
+                int thePrice = Integer.parseInt(price.replaceAll("[^0-9]", ""))/100;
+                //int thePrice = Integer.parseInt(price);
                 if(thePrice >= min && thePrice < max){
                     String desc = element.findElement(By.xpath(DESCRIPTION)).getText();
                     System.out.println("Item description: "+ desc);
-                    System.out.println("Item price: $"+ price);
+                    System.out.println("Item price: "+ thePrice);
                     element.findElement(By.xpath(ADD_TO_CART)).click();
                     return true;
                 }

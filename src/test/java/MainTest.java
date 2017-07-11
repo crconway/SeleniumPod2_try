@@ -36,6 +36,7 @@ public class MainTest {
         System.out.println( item1 + " between $"+ minValue + " and $" + maxValue + " was found and selected.");
 
 
+
         //Selenium Project Step 4
 
         Assert.assertTrue(item1 +" not added to the cart", utils.verifyCartPage());
