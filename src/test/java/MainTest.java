@@ -33,7 +33,7 @@ public class MainTest {
         //Selenium Project Step 3
 
         Assert.assertTrue(item1 + " between $"+ minValue + " and $" + maxValue + " could not be found", utils.validateItemDescriptionFromPrice(minValue, maxValue));
-        System.out.println( item1 + " between $"+ minValue + " and $" + maxValue + " was found.");
+        System.out.println( item1 + " between $"+ minValue + " and $" + maxValue + " was found and selected.");
 
 
         //Selenium Project Step 4
