@@ -21,7 +21,7 @@ public class LandingPage extends HomePage {
 
     }
 
-    public boolean validateItemDescriptionFromPrice(int min, int max){
+    public boolean validateItemDescriptionFromPrice(String item, int min, int max){
         if(waitUntilElementDisplayed(WRAPPER)){
             //List<WebElement> list = driver.findElements(By.xpath(WRAPPER));
 
@@ -33,6 +33,7 @@ public class LandingPage extends HomePage {
                     String desc = element.findElement(By.xpath(DESCRIPTION)).getText();
                     System.out.println("Item description: "+ desc);
                     System.out.println("Item price: "+ thePrice);
+                    setDescription(item, desc);
                     element.findElement(By.xpath(ADD_TO_CART)).click();
                     return true;
                 }

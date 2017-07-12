@@ -12,7 +12,9 @@ public class MainTest {
     public String item1 = "hammer";
     public int minValue = 10;
     public int maxValue = 15;
-    public String item2 = "screwdriver";
+    public String item2 = "nail";
+    public String item3 = "screwdriver";
+
 
 
     @Test
@@ -32,15 +34,34 @@ public class MainTest {
 
         //Selenium Project Step 3
 
-        Assert.assertTrue(item1 + " between $"+ minValue + " and $" + maxValue + " could not be found", utils.validateItemDescriptionFromPrice(minValue, maxValue));
+
+
+        Assert.assertTrue(item1 + " between $"+ minValue + " and $" + maxValue + " could not be found", utils.validateItemDescriptionFromPrice(item1,minValue, maxValue));
         System.out.println( item1 + " between $"+ minValue + " and $" + maxValue + " was found and selected.");
+
+        Assert.assertTrue(item1+ " description doesn't match cart", utils.verifyCartDescription(item1));
+        System.out.println(item1 +" description matches the cart.");
+
+        Assert.assertTrue(item1 +" not added to the cart", utils.verifyCartPage());
+        System.out.println(item1 + " added to the cart");
 
 
 
         //Selenium Project Step 4
 
-        Assert.assertTrue(item1 +" not added to the cart", utils.verifyCartPage());
-        System.out.println(item1 + " added to the cart");
+
+        Assert.assertTrue("Unable to verify Landing Page", utils.verifyItemLandingPage(item1));
+        System.out.println("Landing Page "+ item1 +" verified after cart");
+
+        //Selenium Project Step 5
+
+        Assert.assertTrue("Value can not be entered", utils.validateSearchBoxEnterText(item2));
+        System.out.println("Search performed on "+ item2);
+
+        Assert.assertTrue("Unable to verify Landing Page", utils.verifyItemLandingPage(item2));
+        System.out.println("Landing Page "+ item2 +" verified");
+
+
 
 
     }
