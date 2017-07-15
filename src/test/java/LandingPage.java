@@ -28,15 +28,38 @@ public class LandingPage extends HomePage {
             for (WebElement element:getElements(WRAPPER)) {
                 String price = element.findElement(By.xpath(PRICE)).getText();
                 int thePrice = Integer.parseInt(price.replaceAll("[^0-9]", ""))/100;
-                //int thePrice = Integer.parseInt(price);
                 if(thePrice >= min && thePrice < max){
                     String desc = element.findElement(By.xpath(DESCRIPTION)).getText();
+                    //left in here for debug purpose at this time
                     System.out.println("Item description: "+ desc);
                     System.out.println("Item price: "+ thePrice);
+                    //adding item to the map
                     setDescription(item, desc);
                     element.findElement(By.xpath(ADD_TO_CART)).click();
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public boolean validateItemFromKeyword(String item, String keyword) {
+        keyword = keyword.toLowerCase();
+
+        if (waitUntilElementDisplayed(WRAPPER)) {
+            for (WebElement element : getElements(WRAPPER)) {
+                WebElement descElement = element.findElement(By.xpath(DESCRIPTION));
+                String desc = descElement.getText();
+                if (desc.toLowerCase().contains(keyword)) {
+                    //left in here for debug purpose at this time
+                    System.out.println("Item description: " + desc);
+                    //adding item to the map
+                    setDescription(item, desc);
+                    descElement.click();
+
+                    return true;
+                }
+
             }
         }
         return false;
